@@ -17,7 +17,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
+  assets:
+    - assets/images/boy.png
   fonts:
     - family: Billabong
       fonts:
