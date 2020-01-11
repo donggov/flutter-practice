@@ -19,6 +19,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          'Instagram',
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: 'Billabong',
+            fontSize: 35.0,
+          ),
+        ),
+      ),
       backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
