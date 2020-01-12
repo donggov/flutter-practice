@@ -1,4 +1,4 @@
-import 'userModel.dart';
+import 'user_model.dart';
 
 class UserRepository {
 

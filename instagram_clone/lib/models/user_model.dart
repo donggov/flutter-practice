@@ -6,14 +6,6 @@ class User {
   final String email;
   final String bio;
 
-//  const User({
-//    this.id,
-//    this.name,
-//    this.profileImageUrl,
-//    this.email,
-//    this.bio,
-//  });
-
   const User({this.id, this.name, this.profileImageUrl, this.email, this.bio});
 
   @override

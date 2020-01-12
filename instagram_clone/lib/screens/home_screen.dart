@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/screens/activityScreen.dart';
-import 'package:instagram_clone/screens/createPostScreen.dart';
-import 'package:instagram_clone/screens/feedScreen.dart';
-import 'package:instagram_clone/screens/pofileScreen.dart';
-import 'package:instagram_clone/screens/searchScreen.dart';
+import 'package:instagram_clone/screens/activity_screen.dart';
+import 'package:instagram_clone/screens/create_post_screen.dart';
+import 'package:instagram_clone/screens/feed_screen.dart';
+import 'package:instagram_clone/screens/pofile_screen.dart';
+import 'package:instagram_clone/screens/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final String userId;

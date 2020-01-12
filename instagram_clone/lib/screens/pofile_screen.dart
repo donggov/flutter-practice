@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/models/userModel.dart';
+import 'package:instagram_clone/models/user_model.dart';
 import 'package:instagram_clone/models/user_repository.dart';
-import 'package:instagram_clone/screens/editProfileScreen.dart';
+import 'package:instagram_clone/screens/edit_profile_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String userId;

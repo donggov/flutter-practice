@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/models/userModel.dart';
+import 'package:instagram_clone/models/user_model.dart';
 
 class EditProfileScreen extends StatefulWidget {
   final User user;
