@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/models/userModel.dart';
+import 'package:instagram_clone/models/user_repository.dart';
 import 'package:instagram_clone/screens/editProfileScreen.dart';
 
 class ProfileScreen extends StatefulWidget {
+  final String userId;
+
+  ProfileScreen({this.userId});
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
   @override
   Widget build(BuildContext context) {
-    User user = new User(
-        id: 'donggov',
-        name: 'PANSUK',
-        profileImageUrl: 'https://i.redd.it/dmdqlcdpjlwz.jpg',
-        email: 'donggov@gmail.com',
-        bio: 'Traveler'
-    );
+    User _user = UserRepository.findById(widget.userId);
 
     return Scaffold(
       appBar: AppBar(
@@ -68,19 +68,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           )
                         ],
                       ),
-                      Container(
-                        width: 180.0,
-                        child: FlatButton(
-//                          onPressed: () => print('Edit Profile'),
-                          onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => EditProfileScreen(user: user))
+                      (_user.id == "a") ?
+                        Container(
+                          width: 180.0,
+                          child: FlatButton(
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (_) => EditProfileScreen(user: _user))
+                            ),
+                            color: Colors.blue,
+                            textColor: Colors.white,
+                            child: Text('Edit Profile', style: TextStyle(fontSize: 18.0),),
                           ),
-                          color: Colors.blue,
-                          textColor: Colors.white,
-                          child: Text('Edit Profile', style: TextStyle(fontSize: 18.0),),
-                        ),
-                      )
+                        )
+                      : SizedBox(
+                        height: 45.0,
+                      ),
                     ],
                   ),
                 ),
@@ -93,13 +96,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  user.name,
+                  _user.name,
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 5.0,),
                 Container(
                   height: 80.0,
-                  child: Text(user.bio, style: TextStyle(fontSize: 15.0)),
+                  child: Text(_user.bio, style: TextStyle(fontSize: 15.0)),
                 ),
                 Divider(),
             ],),

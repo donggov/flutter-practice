@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/models/userModel.dart';
+import 'package:instagram_clone/models/user_repository.dart';
+import 'package:instagram_clone/screens/pofileScreen.dart';
 
 class SearchScreen extends StatefulWidget {
   SearchScreen({
@@ -15,41 +17,18 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   TextEditingController _searchController = TextEditingController();
-
-  final List<User> _users = [
-    User(
-      id: "donggov",
-      name: "PANSUK",
-      email: "donggov@gmail.com",
-      bio: "Traveler"
-    ),
-    User(
-        id: "eddie",
-        name: "Eddie",
-        email: "eddie@gmail.com",
-    ),
-    User(
-        id: "donggo",
-        name: "Donggo",
-        email: "donggo@gmail.com",
-    ),
-  ];
-
   List<User> _searchUsers = [];
 
   @override
   void initState() {
     super.initState();
-    _searchUsers = _users;
+//    _searchUsers = UserRepository.findAllByName("");
     _searchController.addListener(() => widget.onTextChanged != null ? widget.onTextChanged(_searchController.text) : null);
   }
 
   _onChanged(String value) {
     setState(() {
-      value = value.trim();
-      _searchUsers = _users
-          .where((user) => user.name.toLowerCase().contains(value.toLowerCase()))
-          .toList();
+      _searchUsers = UserRepository.findAllByName(value);
     });
   }
 
@@ -94,7 +73,10 @@ class _SearchScreenState extends State<SearchScreen> {
 //                          leading: Icon(Icons.map),
                           leading: CircleAvatar(radius: 20.0, backgroundImage: AssetImage('assets/images/boy.png'),),
                           title: Text(user.name),
-                          onTap: () => print(user),
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => ProfileScreen(userId: user.id),
+                          ))
                       );
                     }).toList(),
                   ),

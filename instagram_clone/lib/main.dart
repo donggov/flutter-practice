@@ -4,6 +4,8 @@ import 'package:instagram_clone/screens/homeScreen.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  final String userId = "a";
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
           color: Colors.black,
         )
       ),
-      home: new HomeScreen(),
+      home: new HomeScreen(userId: userId),
     );
   }
 }
