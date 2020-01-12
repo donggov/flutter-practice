@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/models/user_model.dart';
+import 'package:instagram_clone/models/user_provider.dart';
 import 'package:instagram_clone/models/user_repository.dart';
 import 'package:instagram_clone/screens/edit_profile_screen.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String userId;
@@ -68,7 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           )
                         ],
                       ),
-                      (_user.id == "a") ?
+                      (_user.id == Provider.of<UserProvider>(context).userId) ?
                         Container(
                           width: 180.0,
                           child: FlatButton(
