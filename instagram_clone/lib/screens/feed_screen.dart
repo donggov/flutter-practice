@@ -6,6 +6,11 @@ class FeedScreen extends StatefulWidget {
 }
 
 class _FeedScreenState extends State<FeedScreen> {
+
+  _buildPost() {
+    return Container(height: 200.0, margin: EdgeInsets.all(10.0),);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
