@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "102973016609",
+    "firebase_url": "https://fir-practice-donggov.firebaseio.com",
+    "project_id": "firebase-practice-donggov",
+    "storage_bucket": "firebase-practice-donggov.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102973016609:android:4ead6340b090aa03327160",
+        "android_client_info": {
+          "package_name": "com.donggov.instagramClone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102973016609-st4jtnad5sk290tmqkoirufvhpn3b5rb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEFIpX28ra5zQxGsJB_fp3jjTjIwsmnw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102973016609-st4jtnad5sk290tmqkoirufvhpn3b5rb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "102973016609-t1s5tc1vpn1ajl1ukqprotkljn51sj7b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.donggov.instagramClone"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

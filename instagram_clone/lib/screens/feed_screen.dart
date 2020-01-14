@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/services/auth_service.dart';
 
 class FeedScreen extends StatefulWidget {
   @override
@@ -26,7 +27,10 @@ class _FeedScreenState extends State<FeedScreen> {
         ),
       ),
       body: Center(
-        child: Text('Feed'),
+        child: FlatButton(
+          onPressed: () => AuthService.logout(context),
+          child: Text("Logout"),
+        )
       ),
     );
   }
