@@ -21,6 +21,12 @@ class UserRepository {
       email: "donggo@gmail.com",
       bio: "",
     ),
+    User(
+      id: "XFCYGVqsBZQDvfWcNro5F59ENxe2",
+      name: "aaa",
+      email: "aaa@aaa.aaa",
+      bio: "",
+    ),
   ];
 
   static User findById(String id) {

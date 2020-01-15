@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/models/user_model.dart';
+import 'package:instagram_clone/services/database_service.dart';
 
 class EditProfileScreen extends StatefulWidget {
   final User user;
@@ -31,12 +30,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         id: widget.user.id,
         name: _name,
         profileImageUrl: _profileImageUrl,
-        email: widget.user.email,
         bio: _bio,
       );
-      print(user.toString());
+      DatabaseService.updateUser(user);
 
-      // todo : Update user in database
       Navigator.pop(context);
     }
   }
