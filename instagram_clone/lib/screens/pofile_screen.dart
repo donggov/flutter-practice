@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/models/user_model.dart';
 import 'package:instagram_clone/models/user_provider.dart';
@@ -40,10 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             );
           }
           User _user = User.fromDoc(snapshot.data);
-          print("id : " + _user.id);
-          print("name : " + _user.name);
-          print("email : " + _user.email);
-          print("bio : " + _user.bio);
+          print(_user.profileImageUrl);
 
           return ListView(
             children: <Widget>[
@@ -54,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     CircleAvatar(
                       radius: 50.0,
                       backgroundColor: Colors.grey,
-                      backgroundImage: AssetImage('assets/images/boy.png'),
+                      backgroundImage: _user.profileImageUrl.isEmpty ? AssetImage('assets/images/boy.png') : CachedNetworkImageProvider(_user.profileImageUrl),
                     ),
                     Expanded(
                       child: Column(

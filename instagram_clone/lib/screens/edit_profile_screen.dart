@@ -1,6 +1,11 @@
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:instagram_clone/models/user_model.dart';
 import 'package:instagram_clone/services/database_service.dart';
+import 'package:instagram_clone/services/storage_service.dart';
 
 class EditProfileScreen extends StatefulWidget {
   final User user;
@@ -12,6 +17,7 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final _formKey = GlobalKey<FormState>();
+  File _profileImage;
   String _name = '';
   String _bio = '';
 
@@ -22,10 +28,41 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _bio = widget.user.bio;
   }
 
-  _submit() {
+  _handleImageFromGallery() async {
+    print("_handleImageFromGallery");
+    File imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+    if (imageFile != null) {
+      setState(() {
+        _profileImage = imageFile;
+      });
+    }
+  }
+
+  _displayProfile() {
+    if (_profileImage == null) {
+      if (widget.user.profileImageUrl.isEmpty) {
+        return AssetImage('assets/images/boy.png');
+      } else {
+        return CachedNetworkImageProvider(widget.user.profileImageUrl);
+      }
+
+    } else {
+      return FileImage(_profileImage);
+    }
+  }
+
+  _submit() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       String _profileImageUrl = '';
+
+      // todo : 다이얼로그 추가
+      if (_profileImage == null) {
+        _profileImageUrl = widget.user.profileImageUrl;
+      } else {
+        _profileImageUrl = await StorageService.uploadUserProfileImage(widget.user.profileImageUrl, _profileImage);
+      }
+
       User user = User(
         id: widget.user.id,
         name: _name,
@@ -59,10 +96,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     CircleAvatar(
                       radius: 60.0,
                       backgroundColor: Colors.grey,
-                      backgroundImage: AssetImage('assets/images/boy.png'),
+                      backgroundImage: _displayProfile(),
                     ),
                     FlatButton(
-                      onPressed: () => print('Change profile image'),
+                      onPressed: _handleImageFromGallery,
                       child: Text(
                         'Change Profile Image',
                         style: TextStyle(color: Theme.of(context).accentColor),

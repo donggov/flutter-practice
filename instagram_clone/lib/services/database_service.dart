@@ -6,7 +6,7 @@ class DatabaseService {
   static updateUser(User user) {
     userRef.document(user.id).updateData({
       'name': user.name,
-      'pofileImageUrl': user.profileImageUrl,
+      'profileImageUrl': user.profileImageUrl,
       'bio': user.bio,
     });
   }
