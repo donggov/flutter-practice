@@ -1,9 +1,15 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:instagram_clone/models/post_model.dart';
+import 'package:instagram_clone/models/user_provider.dart';
+import 'package:instagram_clone/services/database_service.dart';
+import 'package:instagram_clone/services/storage_service.dart';
+import 'package:provider/provider.dart';
 
 class CreatePostScreen extends StatefulWidget {
   @override
@@ -100,6 +106,15 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       });
 
       // todo : Save post
+      String imageUrl = await StorageService.uploadPost(_imageFile);
+      Post post = new Post(
+        imageUrl: imageUrl,
+        caption: _caption,
+        likes: {},
+        authorId: Provider.of<UserProvider>(context).userId,
+        timestamp: Timestamp.fromDate(DateTime.now()),
+      );
+      DatabaseService.createPost(post);
 
       // Reset data
       _captionController.clear();
