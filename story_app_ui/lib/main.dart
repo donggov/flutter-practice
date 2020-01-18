@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:story_app_ui/widgets/app_drawer.dart';
 import 'package:story_app_ui/widgets/icon_card.dart';
 import 'package:story_app_ui/widgets/image_cards.dart';
 import 'models/data.dart';
@@ -50,16 +51,16 @@ class _MyAppState extends State<MyApp> {
 //          icon: Icon(Icons.menu, color: Colors.white, size: 30.0),
 //          onPressed: () {},
 //        ),
-//        actions: <Widget>[
-//          IconButton(
-//            icon: Icon(Icons.account_circle, color: Colors.white, size: 30.0),
-//            onPressed: () {},
-//          ),
-//        ],
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add, color: Colors.white, size: 30.0),
+            onPressed: () {
+              print('add');
+            },
+          ),
+        ],
       ),
-      drawer: Drawer(
-          child: ListView(),
-      ),
+      drawer: AppDrawer(),
 //      endDrawer: Drawer(
 //        child: ListView(),
 //      ),
@@ -89,10 +90,10 @@ class _MyAppState extends State<MyApp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                IconCard(iconData: Icons.home, text: 'Accomo',),
-                IconCard(iconData: Icons.directions_bike, text: 'Bike',),
+                IconCard(iconData: Icons.assignment_ind, text: 'Passport',),
+                IconCard(iconData: Icons.attach_money, text: 'Currency',),
                 IconCard(iconData: Icons.directions, text: 'Navi',),
-                IconCard(iconData: Icons.flight, text: 'Flight',),
+                IconCard(iconData: Icons.info, text: 'Tip',),
               ],
             ),
 
@@ -104,45 +105,7 @@ class _MyAppState extends State<MyApp> {
                 children: <Widget>[
                   Text('Timeline', style: TextStyle(color: Colors.white, fontSize: 46.0, letterSpacing: 1.0,)),
                   IconButton(
-                    icon: Icon(Icons.add, color: Colors.white, size: 30.0),
-                    onPressed: () {},
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 10.0),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.redAccent,
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 6.0),
-                        child: Text("Animated", style: TextStyle(color: Colors.white),),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 15.0,),
-                  Text("4 Stories", style: TextStyle(color: Colors.white),)
-                ],
-              ),
-            ),
-            SizedBox(height: 10.0,),
-            ImageCards(),
-
-            SizedBox(height: 20.0,),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text('History', style: TextStyle(color: Colors.white, fontSize: 46.0, letterSpacing: 1.0,)),
-                  IconButton(
-                    icon: Icon(Icons.add, color: Colors.white, size: 30.0),
+                    icon: Icon(Icons.more_horiz, color: Colors.white, size: 30.0),
                     onPressed: () {},
                   )
                 ],
@@ -172,21 +135,21 @@ class _MyAppState extends State<MyApp> {
             ),
 
             Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: CarouselSlider(
-                  height: 320.0,
-  //              aspectRatio: 16/9,
+              padding: const EdgeInsets.only(top: 10.0),
+              child: CarouselSlider(
+                height: 320.0,
+                //              aspectRatio: 16/9,
 //                  enableInfiniteScroll: true,
-                  enableInfiniteScroll: false,
-  //              viewportFraction: 0.8,
-  //              reverse: false,
-                  enlargeCenterPage: true,
-                  onPageChanged: (index) {
-                    setState(() {
-                      _historyCurrentIndex = index;
-                    });
+                enableInfiniteScroll: false,
+                //              viewportFraction: 0.8,
+                //              reverse: false,
+                enlargeCenterPage: true,
+                onPageChanged: (index) {
+                  setState(() {
+                    _historyCurrentIndex = index;
+                  });
                 },
-  //              scrollDirection: Axis.vertical,
+                //              scrollDirection: Axis.vertical,
                 items: images.map((i) {
                   return Builder(
                     builder: (BuildContext context) {
@@ -245,6 +208,44 @@ class _MyAppState extends State<MyApp> {
                 );
               }),
             ),
+
+            SizedBox(height: 20.0,),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text('Timeline', style: TextStyle(color: Colors.white, fontSize: 46.0, letterSpacing: 1.0,)),
+//                  IconButton(
+//                    icon: Icon(Icons.add, color: Colors.white, size: 30.0),
+//                    onPressed: () {},
+//                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, top: 10.0),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.redAccent,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 6.0),
+                        child: Text("Animated", style: TextStyle(color: Colors.white),),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 15.0,),
+                  Text("4 Stories", style: TextStyle(color: Colors.white),)
+                ],
+              ),
+            ),
+            SizedBox(height: 10.0,),
+            ImageCards(),
 
             SizedBox(height: 30.0,),
 
