@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:story_app_ui/widgets/app_drawer.dart';
+import 'package:story_app_ui/screens/detail_screen.dart';
 import 'package:story_app_ui/widgets/icon_card.dart';
 import 'package:story_app_ui/widgets/image_cards.dart';
 import 'models/data.dart';
@@ -129,7 +130,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   SizedBox(width: 15.0,),
-                  Text("55 Stories", style: TextStyle(color: Colors.white),)
+                  Text("4 Stories", style: TextStyle(color: Colors.white),)
                 ],
               ),
             ),
@@ -150,41 +151,49 @@ class _MyAppState extends State<MyApp> {
                   });
                 },
                 //              scrollDirection: Axis.vertical,
-                items: images.map((i) {
+                items: places.map((i) {
+                  String place = i.place;
+                  String image = i.image;
+
                   return Builder(
                     builder: (BuildContext context) {
-                      return Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(25.0),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: <Widget>[
-                              Image.asset(i, fit: BoxFit.cover,),
-                              Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                                      child: Text(i, style: TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold)),
-                                    ),
-                                    SizedBox(height: 10.0,),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 12.0, bottom: 12.0),
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 6.0),
-                                        decoration: BoxDecoration(color: Colors.blueAccent, borderRadius: BorderRadius.circular(20.0)),
-                                        child: Text("Read Later", style: TextStyle(color: Colors.white),),
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (_) => DetailScreen()));
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: EdgeInsets.symmetric(horizontal: 5.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25.0),
+                            child: Stack(
+                              fit: StackFit.expand,
+                              children: <Widget>[
+                                Image.asset("assets/images/$image", fit: BoxFit.cover,),
+                                Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                                        child: Text('$place', style: TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold)),
                                       ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
+                                      SizedBox(height: 10.0,),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 12.0, bottom: 12.0),
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 6.0),
+                                          decoration: BoxDecoration(color: Colors.blueAccent, borderRadius: BorderRadius.circular(20.0)),
+                                          child: Text("Read Later", style: TextStyle(color: Colors.white),),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       );
