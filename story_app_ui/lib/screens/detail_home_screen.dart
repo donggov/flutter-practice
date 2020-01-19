@@ -10,7 +10,7 @@ class _DetailHomeScreenState extends State<DetailHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF2d3447),
-      appBar: AppBar(backgroundColor: Color(0x00000000), elevation: 0,),
+      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0,),
       extendBodyBehindAppBar: true,
       body: Stack(
         fit: StackFit.expand,

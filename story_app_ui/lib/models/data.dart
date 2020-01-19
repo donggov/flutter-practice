@@ -21,3 +21,7 @@ List<Place> places = [
   Place(place: 'Holland', image: '3.png', days: 3),
   Place(place: '라오스', image: '4.png', days: 5),
 ];
+
+void addPlace(String place, String image, int day) {
+  places.add(Place(place: place, image: image, days: day));
+}

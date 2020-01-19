@@ -1,10 +1,12 @@
 import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:story_app_ui/screens/create_step01.dart';
 import 'package:story_app_ui/widgets/app_drawer.dart';
 import 'package:story_app_ui/screens/detail_screen.dart';
 import 'package:story_app_ui/widgets/icon_card.dart';
 import 'package:story_app_ui/widgets/image_cards.dart';
+import 'package:story_app_ui/widgets/route_animator.dart';
 import 'models/data.dart';
 
 void main() => runApp(MaterialApp(
@@ -24,7 +26,6 @@ var widgetAspectRatio = (cardAspectRatio * 1.2);
 class _MyAppState extends State<MyApp> {
 //  final GlobalKey _scaffoldKey = new GlobalKey();
 //  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
   var currentPage = images.length - 1.0;
   int _historyCurrentIndex = 0;
   List<T> map<T>(List list, Function handler) {
@@ -37,6 +38,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print("My app");
+
     PageController controller = PageController(initialPage: images.length - 1);
     controller.addListener(() {
       setState(() {
@@ -44,29 +47,20 @@ class _MyAppState extends State<MyApp> {
       });
     });
 
-
     return Scaffold(
       appBar: AppBar(
           title: Text("TRAVELER", style: TextStyle(fontSize: 30.0),), backgroundColor: Color(0xFF2d3447),
-//        leading: IconButton(
-//          icon: Icon(Icons.menu, color: Colors.white, size: 30.0),
-//          onPressed: () {},
-//        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add, color: Colors.white, size: 30.0),
-            onPressed: () {
-              print('add');
-            },
-          ),
-        ],
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.add, color: Colors.white, size: 30.0),
+              onPressed: () {
+                Navigator.push(context, SlideTopRoute(page: CreateStep01()));
+              },
+            ),
+          ],
       ),
       drawer: AppDrawer(),
-//      endDrawer: Drawer(
-//        child: ListView(),
-//      ),
       backgroundColor: Color(0xFF2d3447),
-//      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -139,22 +133,16 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.only(top: 10.0),
               child: CarouselSlider(
                 height: 320.0,
-                //              aspectRatio: 16/9,
-//                  enableInfiniteScroll: true,
                 enableInfiniteScroll: false,
-                //              viewportFraction: 0.8,
-                //              reverse: false,
                 enlargeCenterPage: true,
                 onPageChanged: (index) {
                   setState(() {
                     _historyCurrentIndex = index;
                   });
                 },
-                //              scrollDirection: Axis.vertical,
                 items: places.map((i) {
                   String place = i.place;
                   String image = i.image;
-
                   return Builder(
                     builder: (BuildContext context) {
                       return InkWell(
@@ -205,7 +193,7 @@ class _MyAppState extends State<MyApp> {
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: map<Widget>(images, (index, url) {
+              children: map<Widget>(places, (index, url) {
                 return Container(
                   width: 10.0,
                   height: 10.0,
