@@ -38,8 +38,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    print("My app");
-
     PageController controller = PageController(initialPage: images.length - 1);
     controller.addListener(() {
       setState(() {
